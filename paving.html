@@ -3,40 +3,45 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>iTabs Quote Estimator</title>
+<title>Paving Estimator — Perth, WA | iTabs</title>
 <script>
-
 const WIDGET_CONFIG = {
 
   business: {
-    name: "Perth Paving Pros",
-    tagline: "Concrete, Pavers & Exposed Aggregate",
-    phone: "", email: "", logo: "", website: "",
-    location: "Perth, WA",
-    socials: { facebook: "", instagram: "", google: "" }
+    name: "Perth Paving Estimator",
+    tagline: "Concrete, Pavers & Natural Stone",
+    headline: "How much will my paving cost?",
+    subheadline: "Tap through to get a ballpark price. Takes about 60 seconds.",
+    location: "Perth, WA – 2025",
+    phone: "",
+    email: "",
+    logo: "",
+    website: "",
+    socials: { facebook: "", instagram: "", google: "" },
   },
 
   branding: {
     mode: "dark",
-    primaryColor: "#f59e0b", secondaryColor: "#d97706",
-    backgroundColor: "#0c1117", cardBackground: "#151c25",
-    hoverBackground: "#1a2332", darkBackground: "#0a0e14",
-    borderColor: "#222d3a", textColor: "#e8ecf1",
-    mutedText: "#8896a7", dimText: "#5a6a7d",
-    successColor: "#22c55e", errorColor: "#ef4444", infoColor: "#3b82f6",
+    primaryColor: "#f59e0b",
+    secondaryColor: "#d97706",
+    backgroundColor: "#0c1117",
+    cardBackground: "#151c25",
+    hoverBackground: "#1a2332",
+    darkBackground: "#0a0e14",
+    borderColor: "#222d3a",
+    textColor: "#e8ecf1",
+    mutedText: "#8896a7",
+    dimText: "#5a6a7d",
+    successColor: "#22c55e",
+    errorColor: "#ef4444",
+    infoColor: "#3b82f6",
     fontFamily: "'Plus Jakarta Sans', sans-serif",
     monoFont: "'JetBrains Mono', monospace",
     borderRadius: "14px",
     googleFontsUrl: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap",
   },
 
-  header: {
-    icon: "🧱",
-    headline: "How much is my paving?",
-    subtitle: "Get a ballpark price for your driveway, alfresco, or path. Takes about 60 seconds.",
-    badge: "📍 Prices based on Perth, WA – 2025",
-    disclaimer: "Estimates are approximate. Final pricing confirmed after site inspection.",
-  },
+  socialProof: { enabled: false },
 
   steps: [
     {
@@ -53,7 +58,7 @@ const WIDGET_CONFIG = {
             label: "Plain Concrete",
             priceHint: "$80–$120/m²",
             icon: "⬜",
-            description: "Smooth poured slab. Most affordable option. Durable and easy to clean. Works for driveways, paths and patios.",
+            description: "Smooth poured slab. Most affordable. Durable and easy to clean. Great for driveways, paths and patios.",
             tags: [{ text: "Most Affordable", highlight: true }, { text: "Low maintenance" }]
           },
           {
@@ -61,32 +66,32 @@ const WIDGET_CONFIG = {
             label: "Exposed Aggregate",
             priceHint: "$110–$160/m²",
             icon: "🪨",
-            description: "Pebbles or crushed stone exposed on the surface. Non-slip, textured, very popular in Perth. Hides dirt well and handles WA heat.",
-            tags: [{ text: "Most Popular in WA", highlight: true }, { text: "Non-slip" }]
+            description: "Decorative pebble finish. Slip-resistant and very popular in Perth. Looks great around pools.",
+            tags: [{ text: "Most Popular in WA", highlight: true }, { text: "Slip-resistant" }]
           },
           {
             value: "stencil_concrete",
             label: "Stencil / Printed Concrete",
             priceHint: "$120–$180/m²",
             icon: "🎨",
-            description: "Concrete stamped with patterns to look like pavers, tiles, or stone. Decorative finish at a lower cost than real pavers.",
-            tags: [{ text: "Decorative" }, { text: "Needs resealing" }]
+            description: "Pattern stamped into concrete. Mimics pavers or stone at lower cost. Wide range of designs.",
+            tags: [{ text: "Great kerb appeal" }]
           },
           {
             value: "clay_pavers",
             label: "Clay / Brick Pavers",
             priceHint: "$100–$150/m²",
-            icon: "🟫",
-            description: "Individual clay or concrete bricks laid on a sand bed. Classic look. Easy to repair – replace individual bricks if cracked.",
-            tags: [{ text: "Replaceable" }, { text: "Classic look" }]
+            icon: "🧱",
+            description: "Individual clay or concrete pavers laid on sand base. Classic look, easy to repair.",
+            tags: [{ text: "Easy to repair" }, { text: "Classic look" }]
           },
           {
             value: "natural_stone",
             label: "Natural Stone",
             priceHint: "$150–$250/m²",
             icon: "💎",
-            description: "Limestone, granite, travertine or sandstone. Premium finish that lasts a lifetime. Each piece is unique.",
-            tags: [{ text: "Premium" }, { text: "Long lasting" }]
+            description: "Limestone, sandstone or granite. Premium finish. Each piece unique. Ideal for entertaining areas.",
+            tags: [{ text: "Premium finish", highlight: true }, { text: "Unique appearance" }]
           }
         ]
       },
@@ -94,36 +99,31 @@ const WIDGET_CONFIG = {
         {
           tabLabel: "Compare",
           type: "comparison_table",
-          columns: ["Feature", "Concrete", "Exposed Agg", "Pavers", "Stone"],
+          columns: ["Surface", "Cost/m²", "Durability", "Maintenance"],
           rows: [
-            ["Cost", "Lowest", "Mid", "Mid", "Highest"],
-            ["Slip resistance", "Low", "High", "High", "Varies"],
-            ["Maintenance", "Low", "Low", "Medium", "Low"],
-            ["Lifespan", "25-30 yrs", "25-30 yrs", "20-30 yrs", "50+ yrs"],
-            ["Repairs", "Hard", "Hard", "Easy", "Easy"],
-            ["Resale appeal", "Good", "Great", "Great", "Best"],
+            ["Plain Concrete", "$80–$120", "⭐⭐⭐⭐", "Low"],
+            ["Exposed Aggregate", "$110–$160", "⭐⭐⭐⭐", "Low"],
+            ["Stencil Concrete", "$120–$180", "⭐⭐⭐", "Medium"],
+            ["Clay Pavers", "$100–$150", "⭐⭐⭐⭐", "Low"],
+            ["Natural Stone", "$150–$250", "⭐⭐⭐⭐⭐", "Low"]
           ],
-          cellStyles: {
-            "Lowest": "positive", "Low": "positive", "High": "positive",
-            "Great": "positive", "Best": "positive", "Easy": "positive",
-            "Highest": "negative", "Hard": "negative",
-          }
+          cellStyles: {}
         },
         {
           tabLabel: "Perth Tips",
-          type: "tips",
-          tips: [
-            { icon: "☀️", title: "Perth heat and concrete", text: "Bare white concrete reflects heat and can be blinding in summer. Exposed aggregate or stencil finishes are more comfortable underfoot and look better long-term." },
-            { icon: "🌊", title: "Near the coast?", text: "Salt air doesn't affect concrete much, but use a quality sealer. Natural limestone is actually quarried locally and handles coastal conditions well." },
-            { icon: "🌳", title: "Tree roots nearby?", text: "Pavers are your best bet near established trees – individual bricks can be lifted and reset if roots cause movement. Concrete slabs crack and can't be easily fixed." },
-            { icon: "💧", title: "Drainage matters in Perth", text: "Perth clay soil drains poorly. Make sure your paving contractor designs the fall direction correctly or you'll get pooling near your house." }
+          type: "key_points",
+          points: [
+            { icon: "☀️", text: "Perth UV and heat cycles cause expansion and cracking — sealed concrete lasts significantly longer." },
+            { icon: "🌊", text: "Coastal homes within 500m of the ocean should use marine-grade concrete mix to resist salt air." },
+            { icon: "💧", text: "Many Perth councils require permeable paving for driveways over 60m² — ask your paver about this." },
+            { icon: "🌡️", text: "Exposed aggregate stays cooler underfoot than plain concrete in summer — better for barefoot use." }
           ]
         }
       ]
     },
 
     {
-      id: "size",
+      id: "area_m2",
       title: "How big is the area?",
       preview: "Set your area",
       input: {
@@ -131,22 +131,45 @@ const WIDGET_CONFIG = {
         sliders: [
           {
             id: "area_m2",
-            label: "Area (square metres)",
-            min: 5, max: 200, default: 40, step: 5,
+            label: "Area",
             unit: "m²",
-            markers: ["5m²", "Path ~15m²", "Alfresco ~40m²", "Driveway ~60m²", "200m²"],
+            min: 5,
+            max: 200,
+            step: 5,
+            default: 40,
+            isQuantity: true,
+            markers: [
+              { value: 10, label: "Path" },
+              { value: 40, label: "Alfresco" },
+              { value: 80, label: "Driveway" },
+              { value: 150, label: "Large" }
+            ]
           }
         ]
       },
       hints: [
         {
           tabLabel: "Measuring Tips",
-          type: "mixed",
-          content: [
-            { type: "paragraph", text: "Measure the length and width and multiply them together. For irregular shapes, break it into rectangles and add them up. Or use Google Maps – right-click and choose 'Measure distance'." },
-            { type: "key_point", label: "Common Perth areas as a guide", text: "Standard driveway: 40–60m². Double driveway: 60–90m². Alfresco: 20–50m². Path down the side: 10–20m². Full front yard: 60–120m²." },
-            { type: "tip", icon: "📐", title: "Don't stress about exact numbers", text: "This is a ballpark estimator. A paving contractor will do a proper site measure before quoting – it's usually free." }
+          type: "key_points",
+          points: [
+            { icon: "📐", text: "Measure length x width in metres. For L-shapes, break into rectangles and add together." },
+            { icon: "📱", text: "No tape measure? Use the Measure app on iPhone or Google Measure on Android — accurate enough for a ballpark." },
+            { icon: "🏠", text: "A standard Perth single driveway is about 20–30m². A double is 35–55m²." }
           ]
+        },
+        {
+          tabLabel: "Common Sizes",
+          type: "comparison_table",
+          columns: ["Area type", "Typical size"],
+          rows: [
+            ["Garden path", "5–15m²"],
+            ["Side access", "10–20m²"],
+            ["Alfresco / patio", "20–50m²"],
+            ["Single driveway", "25–40m²"],
+            ["Double driveway", "40–60m²"],
+            ["Pool surrounds", "30–80m²"]
+          ],
+          cellStyles: {}
         }
       ]
     },
@@ -158,69 +181,100 @@ const WIDGET_CONFIG = {
       input: {
         type: "toggle_group",
         toggles: [
-          { id: "demolish", label: "Remove existing surface",               icon: "🔨", costHint: "Adds ~$35–$55/m²" },
-          { id: "slope",    label: "Sloping block",                         icon: "📐", costHint: "Adds ~15–25% to labour" },
-          { id: "access",   label: "Difficult access (narrow, tight space)", icon: "🚧", costHint: "Adds ~10–15% to labour" },
-          { id: "drainage", label: "Drainage channel / grate",              icon: "💧", costHint: "Adds ~$500–$900" },
-          { id: "sealing",  label: "Sealing included",                      icon: "✨", costHint: "Adds ~$8–$15/m²" },
-          { id: "steps",    label: "Steps or retaining edge",               icon: "🪜", costHint: "Adds ~$500–$900" },
+          {
+            id: "demolish",
+            label: "Demolish existing surface",
+            description: "Remove old concrete, pavers or asphalt before laying new surface",
+            icon: "🔨",
+            pricing: { type: "per_unit", lowPerUnit: 35, highPerUnit: 55 }
+          },
+          {
+            id: "slope",
+            label: "Sloping block",
+            description: "Site has significant slope requiring extra prep or stepped levels",
+            icon: "⛰️",
+            pricing: { type: "percentage", lowPercent: 15, highPercent: 25 }
+          },
+          {
+            id: "access",
+            label: "Difficult access",
+            description: "Restricted site — concrete pump or special equipment needed",
+            icon: "🚧",
+            pricing: { type: "percentage", lowPercent: 10, highPercent: 15 }
+          },
+          {
+            id: "drainage",
+            label: "Drainage / ag pipe",
+            description: "Channel drains or ag pipe to manage water runoff",
+            icon: "💧",
+            pricing: { type: "fixed", low: 500, high: 900 }
+          },
+          {
+            id: "sealing",
+            label: "Sealing / coating",
+            description: "Protective sealant applied after laying — extends life and improves appearance",
+            icon: "✨",
+            pricing: { type: "per_unit", lowPerUnit: 8, highPerUnit: 15 }
+          },
+          {
+            id: "steps",
+            label: "Steps / retaining",
+            description: "Concrete steps or small retaining wall to manage level changes",
+            icon: "🪜",
+            pricing: { type: "fixed", low: 500, high: 900 }
+          }
         ]
       },
       hints: [
         {
-          tabLabel: "What's Included?",
-          type: "mixed",
-          content: [
-            { type: "paragraph", text: "A standard paving quote includes: base preparation (compacted roadbase or crusher dust), formwork or edging, supply and lay of surface material, and basic finishing. Here's what's typically extra:" },
-            { type: "key_point", label: "🔨 Demo costs add up fast", text: "Breaking up and removing old concrete is labour-intensive. Expect $35–$55/m² on top of the new paving cost. Pavers are cheaper to remove than poured concrete." },
-            { type: "key_point", label: "📐 Sloping blocks", text: "Common in the hills and older Perth suburbs. Requires extra prep, formwork, and sometimes cut-and-fill earthworks. Usually adds 15–25% to the job." },
-            { type: "tip", icon: "💡", title: "Sealing – is it worth it?", text: "Sealing concrete and exposed aggregate protects against oil stains, fading, and weathering. For driveways it's nearly always worth it. For covered alfrescos, optional." }
+          tabLabel: "What Is Included",
+          type: "key_points",
+          points: [
+            { icon: "✅", text: "Base quote includes: site preparation, formwork, concrete pour or paver laying, finishing and cleanup." },
+            { icon: "❌", text: "Not usually included: demolition of existing surface, drainage works, steps, or permit fees." },
+            { icon: "💡", text: "Always ask your paver what is included — quotes can vary significantly on what is in or out." }
           ]
         },
         {
           tabLabel: "Perth Tips",
-          type: "tips",
-          tips: [
-            { icon: "🪨", title: "Limestone or clay soil?", text: "Perth's soil varies – from limestone cap rock in the northern suburbs to deep sand near the coast and clay in the hills. Base prep costs can vary significantly." },
-            { icon: "🌧️", title: "Check the drainage fall", text: "Perth gets most rain in winter, often in heavy bursts. Make sure your contractor sets the correct fall (usually 1:100 minimum) away from the house." },
-            { icon: "📋", title: "Permits for driveways", text: "Crossover works (from street to your property boundary) need council approval. Most paving contractors handle this – confirm it's included in the quote." }
+          type: "key_points",
+          points: [
+            { icon: "🌧️", text: "Perth sandy soil drains well but can shift — good compaction of the base is critical for pavers." },
+            { icon: "🌿", text: "Tree roots are a common problem in older Perth suburbs — worth checking before you pour concrete." },
+            { icon: "📋", text: "Driveways over a certain size may require council approval — your paver should know the local rules." }
           ]
         }
       ]
-    },
+    }
   ],
 
   estimate: {
     title: "Your ballpark price",
     preview: "Based on your selections",
-    note: "Supply & install • incl. GST • Perth metro",
+    note: "This is a ballpark estimate only. Your actual quote may vary based on site conditions, material availability and contractor pricing. Get 2–3 quotes.",
     hints: [
-      { type: "key_point", label: "How accurate is this?", text: "This is a rough guide based on average Perth pricing in 2025. Your actual quote depends on site conditions, base prep required, material grade, and the contractor. Get 2–3 quotes to compare." },
-      { type: "tip", icon: "💡", title: "What drives the price most?", text: "Demolition and base preparation are the biggest variables. Easy access, no existing surface, flat ground = lower end. Add demo, slope, and tight access and you can easily double the base rate." }
+      {
+        tabLabel: "About This Estimate",
+        type: "key_points",
+        points: [
+          { icon: "📊", text: "Prices are based on typical Perth market rates for 2025. Regional variation applies." },
+          { icon: "📉", text: "Larger areas usually cost less per m² — economy of scale with materials and labour." },
+          { icon: "📋", text: "Always get at least 2–3 written quotes. A big price difference usually means something is not included." }
+        ]
+      }
     ]
   },
 
   pricing: {
-    unit: "sqm",
-    unitLabel: "per m²",
     basePriceStep: "surface_type",
     basePrices: {
       plain_concrete:    { low: 80,  high: 120 },
       exposed_aggregate: { low: 110, high: 160 },
       stencil_concrete:  { low: 120, high: 180 },
       clay_pavers:       { low: 100, high: 150 },
-      natural_stone:     { low: 150, high: 250 },
+      natural_stone:     { low: 150, high: 250 }
     },
     quantitySource: "area_m2",
-    extras: [
-      { id: "demolish", type: "per_unit",   lowPerUnit: 35, highPerUnit: 55, breakdownLabel: "Demo & removal" },
-      { id: "slope",    type: "percentage", lowPercent: 15, highPercent: 25, breakdownLabel: "Sloping block" },
-      { id: "access",   type: "percentage", lowPercent: 10, highPercent: 15, breakdownLabel: "Difficult access" },
-      { id: "drainage", type: "fixed",      low: 500,  high: 900,           breakdownLabel: "Drainage channel" },
-      { id: "sealing",  type: "per_unit",   lowPerUnit: 8,  highPerUnit: 15, breakdownLabel: "Sealing" },
-      { id: "steps",    type: "fixed",      low: 500,  high: 900,           breakdownLabel: "Steps / retaining edge" },
-    ],
-    showBreakdown: true,
     roundTo: 50,
     minimumPrice: 800,
   },
@@ -228,47 +282,29 @@ const WIDGET_CONFIG = {
   leadCapture: {
     enabled: true,
     title: "Get your actual quote",
-    preview: "Free, no obligation",
-    heading: "We've got your specs.",
-    subheading: "Drop your details and we'll get back to you with an exact price – usually within 24 hours.",
-    showSummary: true,
+    subtitle: "Send your selections to a Perth paving specialist — free, no obligation.",
+    web3formsKey: "99a11c15-5c61-4765-99c5-673adec64b16",
+    notifyEmail: "responses@itabs.ai",
+    emailSubject: "New Paving Enquiry – iTabs",
     fields: [
-      { id: "name",    label: "Your name",        type: "text",     placeholder: "e.g. Dave",          required: true },
-      { id: "contact", label: "Phone or email",   type: "text",     placeholder: "e.g. 0412 345 678",  required: true },
-      { id: "suburb",  label: "Suburb",           type: "text",     placeholder: "e.g. Joondalup",     required: false },
-      { id: "notes",   label: "Anything else we should know?", type: "textarea", placeholder: "e.g. Existing cracked concrete to remove, narrow side access...", required: false },
+      { id: "name",   label: "Your name",      type: "text",     placeholder: "John Smith",        required: true },
+      { id: "phone",  label: "Phone",          type: "tel",      placeholder: "04xx xxx xxx",      required: true },
+      { id: "email",  label: "Email",          type: "email",    placeholder: "john@example.com",  required: false },
+      { id: "suburb", label: "Suburb",         type: "text",     placeholder: "e.g. Joondalup",    required: true },
+      { id: "notes",  label: "Anything else?", type: "textarea", placeholder: "Extra details, timeline, access notes...", required: false }
     ],
-    submitText: "📩 Send My Quote Request",
-    submitNote: "No spam. Just your quote.",
-    successMessage: "Quote request sent!",
-    successSubtext: "We'll be in touch within 24 hours with a proper price based on your specs.",
-    delivery: {
-      method: "web3forms",
-      web3formsKey: "99a11c15-5c61-4765-99c5-673adec64b16",
-      notifyEmail: "responses@itabs.ai",
-      emailSubject: "New Paving Enquiry",
-    }
+    submitLabel: "Send my enquiry",
+    successTitle: "Enquiry sent!",
+    successMessage: "A Perth paving specialist will be in touch shortly. Keep an eye on your phone."
   },
 
-  socialProof: { enabled: false, rating: 4.9, reviewCount: 94, badges: ["Licensed & Insured", "Perth Local", "Free Quotes"] },
-  footer: { showPoweredBy: true, poweredByUrl: "https://itabs.ai" }
+  footer: {
+    showPoweredBy: true,
+    poweredByUrl: "https://itabs.ai"
+  }
+
 };
 </script>
-
-<script>
-if (WIDGET_CONFIG.branding.googleFontsUrl) {
-  const link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.href = WIDGET_CONFIG.branding.googleFontsUrl;
-  document.head.appendChild(link);
-  const preconnect = document.createElement('link');
-  preconnect.rel = 'preconnect';
-  preconnect.href = 'https://fonts.googleapis.com';
-  document.head.prepend(preconnect);
-}
-document.title = WIDGET_CONFIG.header.headline + ' | ' + WIDGET_CONFIG.business.name;
-</script>
-
 <style>
 :root {
   --bg-main: #0c1117;
@@ -593,6 +629,7 @@ function renderSelect(step, sectionId, input) {
   input.options.forEach(opt => {
     const selected = state.answers[step.id] === opt.value ? ' selected' : '';
     const tags = opt.tags ? opt.tags.map(t => `<span class="option-tag${t.highlight ? ' highlight' : ''}">${t.text}</span>`).join('') : '';
+    html += `<div class="option-card${selected}" onclick="selectOption('${step.id}','${opt.value}',${C.steps.indexOf(step)},${input.autoAdvance || false})"><div class="option-top"><span class="option-name">${opt.icon} ${opt.label}</span>${opt.priceHint ? `<span class="option-price">${opt.priceHint}</span>` : ''}</div>${opt.description ? `<div class="option-desc">${opt.description}</div>` : ''}${tags ? `<div class="option-tags">${tags}</div>` : ''}<span class="option-check">✓ Selected</span></div>`;
   });
   return html + '</div>';
 }
@@ -604,6 +641,7 @@ function renderMultiSelect(step, sectionId, input) {
   let html = `<div class="option-grid${colsClass}">`;
   input.options.forEach(opt => {
     const selected = state.answers[step.id].includes(opt.value) ? ' selected' : '';
+    html += `<div class="option-card${selected}" onclick="toggleMultiOption('${step.id}','${opt.value}',this)"><div class="option-top"><span class="option-name">${opt.icon} ${opt.label}</span>${opt.priceHint ? `<span class="option-price">${opt.priceHint}</span>` : ''}</div>${opt.description ? `<div class="option-desc">${opt.description}</div>` : ''}<span class="option-check">✓ Selected</span></div>`;
   });
   html += '</div>';
   if (input.optional) html += `<button class="tab" style="margin-top:10px;width:100%;text-align:center;" onclick="skipStep(${C.steps.indexOf(step)})">Skip — none needed</button>`;
@@ -994,8 +1032,5 @@ function getPreview(step) {
 
 init();
 </script>
-</head>
-<body>
-<div id="app" class="container"></div>
 </body>
 </html>
