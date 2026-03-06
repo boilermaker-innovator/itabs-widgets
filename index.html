@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iTabs — Free Trade Estimators for Perth</title>
+<meta name="description" content="Get a ballpark trade estimate in 60 seconds. Free tools for Perth homeowners — fencing, painting, gates and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b0f14;
+    --card: #131920;
+    --border: #1e2a36;
+    --accent: #f59e0b;
+    --accent2: #fb923c;
+    --text: #e8ecf1;
+    --muted: #7a8fa6;
+    --dim: #3a4d60;
+    --radius: 20px;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* BACKGROUND TEXTURE */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% -10%, rgba(245,158,11,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 90% 80%, rgba(251,146,60,0.04) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* HEADER */
+  header {
+    padding: 48px 0 0;
+    text-align: center;
+  }
+
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+
+  .logo-mark {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: .9rem;
+    color: #0b0f14;
+    letter-spacing: -0.5px;
+    flex-shrink: 0;
+  }
+
+  .logo-text {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--text);
+    letter-spacing: -0.5px;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    background: rgba(245,158,11,0.12);
+    border: 1px solid rgba(245,158,11,0.25);
+    color: var(--accent);
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.9rem, 5vw, 2.6rem);
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 14px;
+    color: var(--text);
+  }
+
+  h1 span {
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: .95rem;
+    color: var(--muted);
+    line-height: 1.65;
+    max-width: 400px;
+    margin: 0 auto 40px;
+  }
+
+  /* HOW IT WORKS */
+  .how {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 44px;
+    flex-wrap: wrap;
+  }
+
+  .how-step {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: .75rem;
+    font-weight: 500;
+    color: var(--muted);
+  }
+
+  .how-num {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--border);
+    color: var(--accent);
+    font-size: .65rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .how-arrow {
+    color: var(--dim);
+    font-size: .7rem;
+  }
+
+  /* SECTION LABEL */
+  .section-label {
+    font-size: .7rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 16px;
+    padding-left: 2px;
+  }
+
+  /* TRADE GRID */
+  .trade-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .trade-card {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 18px 20px;
+    text-decoration: none;
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    transition: border-color .2s, transform .2s, box-shadow .2s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .trade-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(245,158,11,0.04) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity .2s;
+  }
+
+  .trade-card:hover {
+    border-color: rgba(245,158,11,0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  }
+
+  .trade-card:hover::before {
+    opacity: 1;
+  }
+
+  .trade-card:active {
+    transform: translateY(0);
+  }
+
+  .trade-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  .trade-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: .95rem;
+    line-height: 1.2;
+    color: var(--text);
+  }
+
+  .trade-desc {
+    font-size: .75rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .trade-time {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: .68rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-top: auto;
+    padding-top: 6px;
+  }
+
+  .trade-time::before {
+    content: '⏱';
+    font-size: .75rem;
+  }
+
+  /* COMING SOON CARDS */
+  .trade-card.soon {
+    opacity: .45;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .trade-card.soon:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: var(--border);
+  }
+
+  .soon-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: .58rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--dim);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 3px 8px;
+    border-radius: 20px;
+  }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 36px 0;
+  }
+
+  /* WHAT IS ITABS */
+  .explain {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 22px;
+    margin-bottom: 12px;
+  }
+
+  .explain h2 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+
+  .explain p {
+    font-size: .83rem;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 8px;
+  }
+
+  .explain p:last-child { margin-bottom: 0; }
+
+  .explain strong { color: var(--text); }
+
+  /* TRADIE CTA */
+  .tradie-cta {
+    background: linear-gradient(135deg, rgba(245,158,11,0.08), rgba(251,146,60,0.06));
+    border: 1.5px solid rgba(245,158,11,0.2);
+    border-radius: var(--radius);
+    padding: 22px;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .tradie-cta h3 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: .95rem;
+    margin-bottom: 6px;
+    color: var(--text);
+  }
+
+  .tradie-cta p {
+    font-size: .78rem;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+
+  .btn-tradie {
+    display: inline-block;
+    background: var(--accent);
+    color: #0b0f14;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: .82rem;
+    padding: 10px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: opacity .2s;
+  }
+
+  .btn-tradie:hover { opacity: .88; }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 20px 0 36px;
+    font-size: .72rem;
+    color: var(--dim);
+    border-top: 1px solid var(--border);
+  }
+
+  footer a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-up {
+    opacity: 0;
+    animation: fadeUp .5s ease forwards;
+  }
+
+  .fade-up:nth-child(1) { animation-delay: .05s; }
+  .fade-up:nth-child(2) { animation-delay: .12s; }
+  .fade-up:nth-child(3) { animation-delay: .19s; }
+  .fade-up:nth-child(4) { animation-delay: .26s; }
+
+  header .fade-up { animation-delay: 0s; }
+
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header>
+    <div class="logo fade-up">
+      <div class="logo-mark">iT</div>
+      <div class="logo-text">iTabs</div>
+    </div>
+
+    <div class="hero-tag fade-up">Free · Perth · 60 seconds</div>
+
+    <h1 class="fade-up">Know the cost<br>before you call</h1>
+
+    <p class="hero-sub fade-up">
+      Get a ballpark trade estimate in 60 seconds — no signup, no waiting, no sales call.
+      Learn what affects the price, then contact a tradie with a proper spec.
+    </p>
+
+    <div class="how fade-up">
+      <div class="how-step">
+        <div class="how-num">1</div>
+        Pick your trade
+      </div>
+      <div class="how-arrow">→</div>
+      <div class="how-step">
+        <div class="how-num">2</div>
+        Answer a few questions
+      </div>
+      <div class="how-arrow">→</div>
+      <div class="how-step">
+        <div class="how-num">3</div>
+        Get your estimate
+      </div>
+    </div>
+  </header>
+
+  <!-- TRADE GRID -->
+  <div class="section-label">Choose a trade</div>
+
+  <div class="trade-grid">
+
+    <a href="fencing.html" class="trade-card fade-up">
+      <div class="trade-icon">🏗️</div>
+      <div>
+        <div class="trade-name">Fencing</div>
+        <div class="trade-desc">Colorbond, timber, aluminium, pool</div>
+      </div>
+      <div class="trade-time">~60 seconds</div>
+    </a>
+
+    <a href="painting.html" class="trade-card fade-up">
+      <div class="trade-icon">🎨</div>
+      <div>
+        <div class="trade-name">Painting</div>
+        <div class="trade-desc">Interior & exterior, any size home</div>
+      </div>
+      <div class="trade-time">~60 seconds</div>
+    </a>
+
+    <a href="gateworld.html" class="trade-card fade-up">
+      <div class="trade-icon">🚪</div>
+      <div>
+        <div class="trade-name">Gates</div>
+        <div class="trade-desc">Driveway & pedestrian, automated</div>
+      </div>
+      <div class="trade-time">~90 seconds</div>
+    </a>
+
+    <div class="trade-card soon fade-up">
+      <div class="soon-badge">Coming soon</div>
+      <div class="trade-icon">🧱</div>
+      <div>
+        <div class="trade-name">Paving</div>
+        <div class="trade-desc">Driveways, patios, paths</div>
+      </div>
+    </div>
+
+    <div class="trade-card soon fade-up">
+      <div class="soon-badge">Coming soon</div>
+      <div class="trade-icon">⚡</div>
+      <div>
+        <div class="trade-name">Electrical</div>
+        <div class="trade-desc">Switchboards, lighting, EV chargers</div>
+      </div>
+    </div>
+
+    <div class="trade-card soon fade-up">
+      <div class="soon-badge">Coming soon</div>
+      <div class="trade-icon">🔧</div>
+      <div>
+        <div class="trade-name">Plumbing</div>
+        <div class="trade-desc">Hot water, reticulation, drainage</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- EXPLAIN -->
+  <div class="section-label">What is iTabs?</div>
+
+  <div class="explain">
+    <h2>Built for Perth homeowners</h2>
+    <p>
+      Most people ring a tradie with no idea what things cost.
+      The tradie has to visit just to give a basic ballpark — wasting everyone's time.
+    </p>
+    <p>
+      <strong>iTabs lets you figure out the rough cost yourself.</strong>
+      Each estimator walks you through the decisions that affect price — materials,
+      size, site conditions, extras. You learn what matters and why.
+    </p>
+    <p>
+      By the time you contact a tradie, you know what you want.
+      That means faster quotes, fewer surprises, and a better job.
+    </p>
+  </div>
+
+  <!-- TRADIE CTA -->
+  <div class="tradie-cta">
+    <h3>Are you a tradie?</h3>
+    <p>
+      Get your own branded estimator — your colours, your pricing, your leads.
+      Built and hosted for free.
+    </p>
+    <a href="https://itabs.ai" class="btn-tradie" target="_blank">Find out more at itabs.ai →</a>
+  </div>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    Prices are estimates only — Perth metro, 2025–2026.<br>
+    Always get a professional quote before committing to any work.<br><br>
+    <a href="https://itabs.ai" target="_blank">iTabs</a> · Free tools for Perth homeowners
+  </div>
+</footer>
+
+</body>
+</html>
