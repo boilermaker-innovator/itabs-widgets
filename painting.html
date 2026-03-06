@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How much to paint my house? | iTabs</title>
+<script>
+const WIDGET_CONFIG = {
+  business: { name: "Perth Painting Pros", tagline: "Interior & Exterior House Painting", phone: "08 9000 0000", email: "", logo: "", website: "https://perthpaintingpros.com.au", location: "Perth, WA" },
+  branding: { primaryColor: "#6366f1", secondaryColor: "#4f46e5", backgroundColor: "#0c1117", cardBackground: "#151c25", hoverBackground: "#1a2332", darkBackground: "#0a0e14", borderColor: "#222d3a", textColor: "#e8ecf1", mutedText: "#8896a7", dimText: "#5a6a7d", successColor: "#22c55e", errorColor: "#ef4444", infoColor: "#3b82f6", fontFamily: "'Plus Jakarta Sans', sans-serif", monoFont: "'JetBrains Mono', monospace", borderRadius: "14px", googleFontsUrl: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" },
+  header: { icon: "🎨", headline: "How much to paint my house?", subtitle: "Get a ballpark price for your painting project in about 60 seconds.", badge: "📍 Prices based on Perth, WA — 2025", disclaimer: "Estimates are approximate. Final pricing confirmed after site inspection." },
+  steps: [
+    {
+      id: "paint_scope",
+      title: "What needs painting?",
+      preview: "Tap to choose",
+      input: { type: "select", columns: 1, autoAdvance: true, options: [
+        { value: "exterior_full", label: "Full exterior", icon: "🏠", description: "All external walls, eaves, fascias, and trim. Most common repaint job.", priceHint: "$3,000-$9,000", tags: [{ text: "Most Popular", highlight: true }] },
+        { value: "interior_full", label: "Full interior", icon: "🛋️", description: "All internal walls and ceilings throughout the home.", priceHint: "$4,000-$12,000", tags: [{ text: "High impact" }] },
+        { value: "interior_rooms", label: "Selected rooms only", icon: "🚪", description: "Specific rooms — bedrooms, living, kitchen, bathroom.", priceHint: "$400-$900 per room", tags: [{ text: "Flexible" }] },
+        { value: "both", label: "Full interior + exterior", icon: "🏡", description: "Complete repaint inside and out. Best value when doing both together.", priceHint: "$7,000-$20,000", tags: [{ text: "Best value combo" }] }
+      ]},
+      hints: [
+        { tabLabel: "Compare", type: "comparison_table",
+          columns: ["Scope", "Typical cost", "Days", "Disruption"],
+          rows: [
+            ["Exterior only", "$3k-$9k", "2-4", "Low"],
+            ["Interior only", "$4k-$12k", "3-6", "Medium"],
+            ["Selected rooms", "$400-$900/rm", "1-2", "Low"],
+            ["Interior + Exterior", "$7k-$20k", "5-10", "High"]
+          ],
+          cellStyles: { "Low": "positive", "High": "negative", "Medium": "neutral" }
+        },
+        { tabLabel: "Tips", type: "tips", tips: [
+          { icon: "💰", title: "Do both at the same time to save money", text: "Getting interior and exterior painted together usually saves 10-20% compared to booking separately. The painter is already mobilised, scaffold is already up, and setup time is shared." },
+          { icon: "📅", title: "When to repaint in Perth", text: "Exterior paint in Perth typically lasts 8-12 years depending on sun exposure. West and north-facing walls cop the most UV and often need repainting first. Interior paint lasts much longer — 15-20 years if the surface prep was done well." }
+        ]}
+      ]
+    },
+    {
+      id: "home_size",
+      title: "How big is your home?",
+      preview: "Tap to choose",
+      input: { type: "select", columns: 1, autoAdvance: true, options: [
+        { value: "small", label: "Small — up to 3 bed / 1 bath", icon: "🏘️", description: "Approx 100-150m² floor area. Single storey.", priceHint: "", tags: [] },
+        { value: "medium", label: "Medium — 4 bed / 2 bath", icon: "🏠", description: "Approx 180-250m² floor area. Single or double storey.", priceHint: "", tags: [{ text: "Most common in Perth", highlight: true }] },
+        { value: "large", label: "Large — 5+ bed or double storey", icon: "🏡", description: "Approx 280-400m² floor area. Often requires scaffolding.", priceHint: "", tags: [] },
+        { value: "xlarge", label: "XL — large double storey / acreage", icon: "🏰", description: "Over 400m². Complex roofline, multiple levels or outbuildings.", priceHint: "", tags: [] }
+      ]},
+      hints: [{ tabLabel: "Tips", type: "tips", tips: [
+        { icon: "📐", title: "Not sure of your floor area?", text: "Check your original house plans, RP Data / CoreLogic listing, or your council rates notice — they usually list the building area. If in doubt, step out the main rooms and multiply length by width." },
+        { icon: "🏗️", title: "Double storey adds cost", text: "Double storey homes need scaffolding or elevated work platforms for exterior painting. This adds $500-$2,000 to the job depending on the height and roof complexity. It's a safety requirement, not a luxury." }
+      ]}]
+    },
+    {
+      id: "surface_condition",
+      title: "What condition is the current paint?",
+      preview: "Tap to choose",
+      input: { type: "select", columns: 1, autoAdvance: true, options: [
+        { value: "good", label: "Good — clean, no peeling", icon: "✅", description: "Paint is intact, just faded or a colour change needed. Minimal prep.", priceHint: "" },
+        { value: "fair", label: "Fair — some flaking or stains", icon: "⚠️", description: "Some peeling, crazing, or water stains. Needs patching and sanding.", priceHint: "+15-25%" },
+        { value: "poor", label: "Poor — significant peeling or damage", icon: "🔴", description: "Widespread peeling, mould, rust stains, or major surface damage. Extensive prep required.", priceHint: "+30-50%" }
+      ]},
+      hints: [{ tabLabel: "Tips", type: "tips", tips: [
+        { icon: "🔍", title: "Surface prep is where quality happens", text: "A cheap painter skips prep. A good one doesn't. Washing, sanding, filling cracks, and priming bare areas takes longer than the actual painting — and it's what makes paint last. Ask your painter what their prep process is." },
+        { icon: "💧", title: "Check for moisture before painting", text: "Painting over damp walls or mould without treating the source is a waste of money — the paint will fail within 12 months. If you have rising damp, leaks, or condensation issues, fix those first." },
+        { icon: "🏚️", title: "Older homes: check for lead paint", text: "Homes built before 1970 may have lead-based paint. Sanding or stripping it creates hazardous dust. Licensed painters follow safe work procedures — don't DIY on older properties without testing first." }
+      ]}]
+    },
+    {
+      id: "paint_quality",
+      title: "What paint quality do you want?",
+      preview: "Tap to choose",
+      input: { type: "select", columns: 1, autoAdvance: true, options: [
+        { value: "standard", label: "Standard — good quality, practical", icon: "👍", description: "Dulux or Taubmans trade range. Solid coverage, 10-year warranty. Right choice for most homes.", priceHint: "", tags: [{ text: "Most popular", highlight: true }] },
+        { value: "premium", label: "Premium — best durability & finish", icon: "⭐", description: "Dulux Weathershield, Solver Permalite, or equivalent. Extra UV and weather resistance. Ideal for harsh coastal or north-facing walls.", priceHint: "+15-25%", tags: [{ text: "Coastal & premium homes" }] }
+      ]},
+      hints: [{ tabLabel: "Tips", type: "tips", tips: [
+        { icon: "☀️", title: "Perth sun is brutal on paint", text: "Perth gets some of the highest UV in the world. North and west-facing walls degrade faster than south-facing ones. Premium exterior paint with UV inhibitors can add years to your repaint cycle — worth it if you're near the coast or have a lot of sun exposure." },
+        { icon: "🎨", title: "Dark colours fade faster", text: "Deep reds, navy blues, and charcoals absorb more heat and UV than light colours. If you're choosing a dark exterior, use a premium paint and expect a shorter repaint cycle — or choose a lighter version of the same tone." }
+      ]}]
+    },
+    {
+      id: "extras",
+      title: "Any extras?",
+      preview: "All off — tap to add",
+      input: { type: "toggle_group", toggles: [
+        { id: "trim", label: "Doors, windows & trim", icon: "🚪", costHint: "+$800-$2,500" },
+        { id: "ceilings", label: "Ceilings (interior)", icon: "⬆️", costHint: "+$600-$2,000" },
+        { id: "deck", label: "Deck or alfresco staining/painting", icon: "🪵", costHint: "+$500-$2,500" },
+        { id: "garage", label: "Garage door or shed", icon: "🏗️", costHint: "+$300-$800" },
+        { id: "pressure_wash", label: "Pressure wash before painting", icon: "💦", costHint: "+$200-$500" }
+      ]}
+    }
+  ],
+  estimate: { title: "Your Estimate", preview: "Complete above to see price", note: "Based on typical Perth pricing — your actual quote may differ based on site inspection." },
+  pricing: {
+    unit: "job",
+    unitLabel: "per job",
+    basePriceStep: "paint_scope",
+    basePrices: {
+      exterior_full:  { low: 3000, high: 9000 },
+      interior_full:  { low: 4000, high: 12000 },
+      interior_rooms: { low: 800,  high: 2700 },
+      both:           { low: 7000, high: 20000 }
+    },
+    quantitySource: null,
+    multipliers: [
+      { source: "home_size", type: "select_map", values: { small: 0.75, medium: 1.0, large: 1.45, xlarge: 1.9 } },
+      { source: "surface_condition", type: "select_map", values: { good: 1.0, fair: 1.2, poor: 1.4 } },
+      { source: "paint_quality", type: "select_map", values: { standard: 1.0, premium: 1.2 } }
+    ],
+    extras: [
+      { id: "trim",           type: "fixed", low: 800,  high: 2500, breakdownLabel: "Doors, windows & trim" },
+      { id: "ceilings",       type: "fixed", low: 600,  high: 2000, breakdownLabel: "Ceilings" },
+      { id: "deck",           type: "fixed", low: 500,  high: 2500, breakdownLabel: "Deck/alfresco" },
+      { id: "garage",         type: "fixed", low: 300,  high: 800,  breakdownLabel: "Garage/shed" },
+      { id: "pressure_wash",  type: "fixed", low: 200,  high: 500,  breakdownLabel: "Pressure wash" }
+    ],
+    showBreakdown: true,
+    roundTo: 100,
+    minimumPrice: 500
+  },
+  leadCapture: {
+    enabled: true, title: "Get your actual quote", preview: "Free, no obligation",
+    subheading: "Drop your details and we'll get back to you with an exact price — usually within 24 hours.",
+    showSummary: true,
+    fields: [
+      { id: "name",    label: "Your name",      type: "text",     placeholder: "e.g. Sarah",        required: true },
+      { id: "contact", label: "Phone or email", type: "text",     placeholder: "e.g. 0412 345 678", required: true },
+      { id: "suburb",  label: "Suburb",         type: "text",     placeholder: "e.g. Cottesloe",    required: false },
+      { id: "notes",   label: "Anything else?", type: "textarea", placeholder: "e.g. Render walls, heritage colours, need colour consult...", required: false }
+    ],
+    submitText: "Send My Quote Request", submitNote: "No spam. Just your quote.",
+    successMessage: "Quote request sent!", successSubtext: "We'll be in touch within 24 hours with a proper price based on your specs.",
+    delivery: { method: "web3forms", web3formsKey: "YOUR-WEB3FORMS-KEY", notifyEmail: "quotes@perthpaintingpros.com.au", emailSubject: "New Painting Enquiry" }
+  },
+  socialProof: { enabled: false, rating: 4.9, reviewCount: 94, badges: ["Licensed & Insured", "Perth Local", "Free Quotes"] },
+  footer: { showPoweredBy: true, poweredByUrl: "https://itabs.ai" }
+};
+</script>
+<script>
+if (WIDGET_CONFIG.branding.googleFontsUrl) {
+  var fl = document.createElement('link'); fl.rel='stylesheet'; fl.href=WIDGET_CONFIG.branding.googleFontsUrl; document.head.appendChild(fl);
+  var pc = document.createElement('link'); pc.rel='preconnect'; pc.href='https://fonts.googleapis.com'; document.head.prepend(pc);
+}
+document.title = WIDGET_CONFIG.header.headline + ' | ' + WIDGET_CONFIG.business.name;
+</script>
+<style>
+:root{--bg-main:#0c1117;--bg-card:#151c25;--bg-hover:#1a2332;--bg-dark:#0a0e14;--border:#222d3a;--brand-primary:#6366f1;--brand-secondary:#4f46e5;--brand-glow:rgba(99,102,241,0.15);--accent-green:#22c55e;--accent-blue:#3b82f6;--accent-red:#ef4444;--text-primary:#e8ecf1;--text-secondary:#8896a7;--text-muted:#5a6a7d;--font-main:'Plus Jakarta Sans',sans-serif;--font-mono:'JetBrains Mono',monospace;--radius:14px}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--font-main);background:var(--bg-main);color:var(--text-primary);min-height:100vh;-webkit-font-smoothing:antialiased}
+.container{max-width:520px;margin:0 auto;padding:20px 16px 40px}
+.header{text-align:center;padding:30px 0 25px}
+.header-icon{font-size:2.5rem;margin-bottom:12px}
+.header h1{font-size:1.6rem;font-weight:800;margin-bottom:6px;background:linear-gradient(135deg,var(--brand-primary),#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.header p{color:var(--text-secondary);font-size:0.95rem;line-height:1.5}
+.badge-line{display:inline-block;background:var(--bg-card);border:1px solid var(--border);padding:6px 14px;border-radius:20px;font-size:0.8rem;color:var(--text-muted);margin-top:12px}
+.progress-label{display:flex;justify-content:space-between;margin-bottom:8px;font-size:0.75rem;color:var(--text-muted)}
+.progress-bar{background:var(--bg-card);border-radius:10px;height:6px;margin-bottom:25px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--brand-primary),var(--brand-secondary));border-radius:10px;width:0%;transition:width 0.5s ease}
+.itab-section{background:var(--bg-card);border-radius:var(--radius);margin-bottom:14px;overflow:hidden;border:1px solid var(--border);transition:all 0.3s ease;scroll-margin-top:16px}
+.itab-section:hover{border-color:rgba(99,102,241,0.3)}
+.itab-section.completed{border-color:var(--accent-green)}
+.itab-section.completed .itab-number{background:var(--accent-green)}
+.itab-header{display:flex;align-items:center;justify-content:space-between;padding:18px 16px;cursor:pointer;transition:background 0.2s}
+.itab-header:hover{background:var(--bg-hover)}
+.itab-title{display:flex;align-items:center;gap:12px}
+.itab-number{width:34px;height:34px;background:linear-gradient(135deg,var(--brand-primary),var(--brand-secondary));border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.85rem;color:#fff;flex-shrink:0}
+.itab-name{font-size:1rem;font-weight:600}
+.itab-preview{font-size:0.8rem;color:var(--text-muted);margin-top:2px}
+.itab-preview .selected{color:var(--accent-green);font-weight:500}
+.i-button{width:32px;height:32px;background:linear-gradient(135deg,var(--brand-primary),var(--brand-secondary));border:none;border-radius:8px;color:#fff;font-weight:700;font-size:1rem;cursor:pointer;transition:all 0.2s;font-family:serif;font-style:italic;flex-shrink:0}
+.i-button:hover{transform:scale(1.1);box-shadow:0 0 20px var(--brand-glow)}
+.i-button.active{background:var(--accent-green);color:white}
+.itab-content{display:none;padding:0 16px 18px;border-top:1px solid var(--border)}
+.itab-content.show{display:block;animation:fadeInUp 0.3s ease}
+.tabs{display:flex;gap:6px;padding:14px 0;border-bottom:1px solid var(--border);margin-bottom:14px;flex-wrap:wrap}
+.tab{padding:7px 14px;background:var(--bg-hover);border:none;border-radius:8px;color:var(--text-secondary);cursor:pointer;font-family:var(--font-main);font-size:0.85rem;font-weight:500;transition:all 0.2s}
+.tab:hover{color:var(--text-primary)}
+.tab.active{background:linear-gradient(135deg,var(--brand-primary),var(--brand-secondary));color:#fff;font-weight:600}
+.tab-panel{display:none}
+.tab-panel.show{display:block}
+.option-grid{display:grid;gap:10px;margin:10px 0}
+.option-grid.cols-2{grid-template-columns:1fr 1fr}
+.option-grid.cols-3{grid-template-columns:1fr 1fr 1fr}
+.option-card{background:var(--bg-dark);border:2px solid var(--border);border-radius:12px;padding:16px;cursor:pointer;transition:all 0.2s}
+.option-card:hover{border-color:var(--brand-primary);background:var(--bg-hover)}
+.option-card.selected{border-color:var(--accent-green);background:rgba(34,197,94,0.05)}
+.option-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.option-name{font-weight:700;font-size:1rem}
+.option-price{font-family:var(--font-mono);font-size:0.85rem;color:var(--brand-primary);font-weight:500}
+.option-desc{color:var(--text-muted);font-size:0.82rem;line-height:1.5}
+.option-check{display:none;color:var(--accent-green);font-weight:700;font-size:0.85rem;margin-top:6px}
+.option-card.selected .option-check{display:inline}
+.option-tags{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.option-tag{font-size:0.7rem;padding:3px 8px;border-radius:6px;background:var(--bg-hover);color:var(--text-muted)}
+.option-tag.highlight{background:rgba(99,102,241,0.15);color:var(--brand-primary)}
+.cols-3 .option-card{padding:12px 10px;text-align:center}
+.cols-3 .option-top{flex-direction:column;gap:2px}
+.cols-3 .option-name{font-size:0.85rem}
+.cols-3 .option-desc{display:none}
+.toggle-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--border)}
+.toggle-row:last-child{border-bottom:none}
+.toggle-info .toggle-name{font-weight:600;font-size:0.9rem;margin-bottom:2px}
+.toggle-info .toggle-cost{font-size:0.8rem;color:var(--text-muted)}
+.toggle-switch{width:48px;height:26px;background:var(--bg-dark);border-radius:13px;border:2px solid var(--border);cursor:pointer;position:relative;transition:all 0.3s;flex-shrink:0}
+.toggle-switch.on{background:var(--accent-green);border-color:var(--accent-green)}
+.toggle-knob{width:18px;height:18px;background:white;border-radius:50%;position:absolute;top:2px;left:2px;transition:all 0.3s}
+.toggle-switch.on .toggle-knob{left:24px}
+.estimate-box{background:linear-gradient(135deg,rgba(99,102,241,0.08),rgba(79,70,229,0.05));border:2px solid var(--brand-primary);border-radius:var(--radius);padding:24px;margin:20px 0;text-align:center}
+.est-label{color:var(--text-muted);font-size:0.8rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.est-range{font-family:var(--font-mono);font-size:2rem;font-weight:700;color:var(--brand-primary);margin-bottom:4px}
+.est-note{color:var(--text-muted);font-size:0.78rem}
+.estimate-breakdown{margin-top:16px;text-align:left}
+.breakdown-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(99,102,241,0.1);font-size:0.85rem}
+.breakdown-row:last-child{border-bottom:none}
+.breakdown-row .br-label{color:var(--text-secondary)}
+.breakdown-row .br-value{font-family:var(--font-mono);color:var(--text-primary);font-weight:500}
+.spec-btn{width:100%;margin-top:12px;padding:13px;background:transparent;border:2px solid var(--brand-primary);border-radius:10px;color:var(--brand-primary);font-family:var(--font-main);font-size:0.95rem;font-weight:700;cursor:pointer;transition:all 0.2s;display:none}
+.spec-btn:hover{background:rgba(99,102,241,0.08)}
+.spec-btn.visible{display:block}
+.spec-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:1000;align-items:flex-end;justify-content:center}
+.spec-overlay.open{display:flex}
+.spec-sheet{background:#131920;width:100%;max-width:520px;border-radius:20px 20px 0 0;padding:8px 20px 36px;max-height:85vh;overflow-y:auto;animation:fadeInUp 0.3s ease}
+.spec-handle{width:40px;height:4px;background:#2a3a4a;border-radius:2px;margin:10px auto 18px}
+.spec-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.spec-header h3{font-size:1rem;font-weight:700;color:var(--text-primary)}
+.spec-close{background:transparent;border:none;color:var(--text-muted);font-size:1.5rem;cursor:pointer;padding:4px;line-height:1}
+.spec-intro{font-size:0.8rem;color:var(--text-muted);margin-bottom:16px;line-height:1.5}
+.spec-box{background:#0b0f14;border:1px solid #1e2a36;border-radius:12px;padding:16px;margin-bottom:16px;font-size:0.83rem;color:var(--text-secondary);line-height:1.9;white-space:pre-wrap;font-family:var(--font-mono)}
+.spec-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.spec-action-btn{padding:12px;border-radius:10px;font-family:var(--font-main);font-size:0.85rem;font-weight:700;cursor:pointer;border:none;transition:opacity 0.2s;text-align:center;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:6px}
+.spec-copy{background:var(--brand-primary);color:#fff}
+.spec-wa{background:#25D366;color:#000}
+.spec-action-btn:hover{opacity:0.85}
+.spec-brand{text-align:center;font-size:0.72rem;color:var(--text-muted)}
+.spec-brand a{color:var(--brand-primary);text-decoration:none;font-weight:600}
+.tip-card{background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.2);border-radius:10px;padding:12px 14px;margin:10px 0;font-size:0.85rem}
+.tip-card .tip-title{font-weight:600;color:var(--accent-blue);margin-bottom:4px}
+.tip-card p{color:var(--text-secondary);margin-bottom:0;font-size:0.83rem}
+.compare-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:0.82rem}
+.compare-table th{text-align:left;padding:10px 8px;color:var(--text-muted);font-weight:600;border-bottom:2px solid var(--border);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.5px}
+.compare-table td{padding:10px 8px;color:var(--text-secondary);border-bottom:1px solid var(--border)}
+.compare-table td:first-child{font-weight:600;color:var(--text-primary)}
+.compare-table .positive{color:var(--accent-green)}
+.compare-table .negative{color:var(--accent-red)}
+.form-group{margin-bottom:12px;text-align:left}
+.form-group label{display:block;color:var(--text-muted);font-size:0.8rem;margin-bottom:4px;font-weight:500}
+.form-group input,.form-group textarea{width:100%;padding:12px;background:var(--bg-dark);border:1px solid var(--border);border-radius:8px;color:var(--text-primary);font-family:var(--font-main);font-size:0.9rem;outline:none;transition:border-color 0.2s}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--brand-primary)}
+.form-group textarea{resize:vertical;min-height:70px}
+.submit-btn{width:100%;padding:14px;background:linear-gradient(135deg,var(--brand-primary),var(--brand-secondary));border:none;border-radius:10px;color:#fff;font-family:var(--font-main);font-size:1rem;font-weight:700;cursor:pointer;transition:all 0.2s;margin-top:8px}
+.submit-btn:hover{transform:translateY(-1px);box-shadow:0 4px 20px var(--brand-glow)}
+.submit-btn:disabled{opacity:0.6;cursor:not-allowed;transform:none}
+.summary-box{background:var(--bg-dark);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:16px;font-size:0.83rem}
+.summary-label{font-weight:600;color:var(--brand-primary);margin-bottom:8px;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.5px}
+.summary-content{color:var(--text-secondary);line-height:1.8}
+.success-message{text-align:center;padding:30px 20px;animation:fadeInUp 0.4s ease}
+.success-message .check-icon{font-size:3rem;margin-bottom:12px}
+.success-message h3{color:var(--accent-green);margin-bottom:8px}
+.success-message p{color:var(--text-secondary);font-size:0.9rem}
+.powered-by{text-align:center;padding:30px 0 10px;font-size:0.75rem;color:var(--text-muted)}
+.powered-by a{color:var(--brand-primary);text-decoration:none;font-weight:600}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+<div class="container" id="app"></div>
+<div class="spec-overlay" id="specOverlay" onclick="if(event.target===this)closeSpec()">
+  <div class="spec-sheet">
+    <div class="spec-handle"></div>
+    <div class="spec-header">
+      <h3>Your Job Spec</h3>
+      <button class="spec-close" onclick="closeSpec()">&#x2715;</button>
+    </div>
+    <p class="spec-intro">Copy this and send it to any tradie you want a quote from. No prices — just the job details.</p>
+    <div class="spec-box" id="specContent"></div>
+    <div class="spec-actions">
+      <button class="spec-action-btn spec-copy" onclick="copySpec(this)">&#x1F4CB; Copy to clipboard</button>
+      <a class="spec-action-btn spec-wa" id="specWA" href="#" target="_blank">&#x1F4F2; Share via WhatsApp</a>
+    </div>
+    <div class="spec-brand">Created with <a href="https://itabs.ai" target="_blank">iTabs</a> &middot; Free trade spec builder</div>
+  </div>
+</div>
+<script>
+var C = WIDGET_CONFIG;
+var state = { answers: {}, sliders: {}, toggles: {}, openSection: null, completedSections: new Set() };
+
+function init() {
+  var b = C.branding, r = document.documentElement.style;
+  r.setProperty('--bg-main', b.backgroundColor); r.setProperty('--bg-card', b.cardBackground); r.setProperty('--bg-hover', b.hoverBackground); r.setProperty('--bg-dark', b.darkBackground); r.setProperty('--border', b.borderColor); r.setProperty('--brand-primary', b.primaryColor); r.setProperty('--brand-secondary', b.secondaryColor); r.setProperty('--brand-glow', 'rgba(99,102,241,0.15)'); r.setProperty('--text-primary', b.textColor); r.setProperty('--text-secondary', b.mutedText); r.setProperty('--text-muted', b.dimText); r.setProperty('--accent-green', b.successColor); r.setProperty('--accent-red', b.errorColor); r.setProperty('--accent-blue', b.infoColor); r.setProperty('--font-main', b.fontFamily); r.setProperty('--font-mono', b.monoFont); r.setProperty('--radius', b.borderRadius);
+  renderApp(); updateEstimate(); updateProgress();
+}
+
+function renderApp() {
+  var app = document.getElementById('app');
+  var h = C.header;
+  var total = C.steps.length + 2;
+  var html = '<div class="header"><div class="header-icon">' + h.icon + '</div><h1>' + h.headline + '</h1><p>' + h.subtitle + '</p><span class="badge-line">' + h.badge + '</span></div>';
+  html += '<div class="progress-label"><span>Progress</span><span id="progressText">0 of ' + total + '</span></div><div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>';
+  C.steps.forEach(function(step, i) { html += renderSection(step, i); });
+  html += renderEstimateSection(C.steps.length);
+  html += renderLeadSection(C.steps.length + 1);
+  if (C.footer && C.footer.showPoweredBy) html += '<div class="powered-by">Powered by <a href="' + C.footer.poweredByUrl + '" target="_blank">iTabs</a> &middot; Interactive tools that convert</div>';
+  app.innerHTML = html;
+}
+
+function renderSection(step, i) {
+  var sid = 'section-' + i;
+  var inputLabel = step.input.type === 'toggle_group' ? 'Add Extras' : 'Choose';
+  var hints = step.hints || [];
+  var tabsHtml = '';
+  if (hints.length) {
+    tabsHtml = '<div class="tabs"><button class="tab active" onclick="showTab(this,\'' + sid + '-input\')">' + inputLabel + '</button>';
+    hints.forEach(function(h, hi) { tabsHtml += '<button class="tab" onclick="showTab(this,\'' + sid + '-hint-' + hi + '\')">' + h.tabLabel + '</button>'; });
+    tabsHtml += '</div>';
+  }
+  var contentHtml = tabsHtml + '<div class="tab-panel show" id="' + sid + '-input">' + renderInput(step) + '</div>';
+  hints.forEach(function(hint, hi) { contentHtml += '<div class="tab-panel" id="' + sid + '-hint-' + hi + '">' + renderHint(hint) + '</div>'; });
+  return '<div class="itab-section" id="' + sid + '"><div class="itab-header" onclick="toggleSection(' + i + ')"><div class="itab-title"><span class="itab-number">' + (i+1) + '</span><div><div class="itab-name">' + step.title + '</div><div class="itab-preview" id="' + sid + '-preview">' + step.preview + '</div></div></div><button class="i-button" id="' + sid + '-btn">i</button></div><div class="itab-content" id="' + sid + '-content">' + contentHtml + '</div></div>';
+}
+
+function renderEstimateSection(i) {
+  var sid = 'section-' + i;
+  return '<div class="itab-section" id="' + sid + '"><div class="itab-header" onclick="toggleSection(' + i + ')"><div class="itab-title"><span class="itab-number">' + (i+1) + '</span><div><div class="itab-name">' + C.estimate.title + '</div><div class="itab-preview" id="' + sid + '-preview">' + C.estimate.preview + '</div></div></div><button class="i-button" id="' + sid + '-btn">i</button></div><div class="itab-content" id="' + sid + '-content"><div class="estimate-box"><div class="est-label">Estimated range</div><div class="est-range" id="estRange">-</div><div class="est-note" id="estNote">Complete the sections above to see your estimate</div><div class="estimate-breakdown" id="estBreakdown"></div></div><button class="spec-btn" id="specBtn" onclick="openSpec()">&#x1F4CB; Create My Spec — share with any tradie</button></div></div>';
+}
+
+function renderLeadSection(i) {
+  var sid = 'section-' + i;
+  var lc = C.leadCapture;
+  var fields = lc.fields.map(function(f) {
+    var req = f.required ? ' *' : '';
+    return f.type === 'textarea'
+      ? '<div class="form-group"><label>' + f.label + req + '</label><textarea id="form-' + f.id + '" placeholder="' + f.placeholder + '"></textarea></div>'
+      : '<div class="form-group"><label>' + f.label + req + '</label><input type="text" id="form-' + f.id + '" placeholder="' + f.placeholder + '"></div>';
+  }).join('');
+  return '<div class="itab-section" id="' + sid + '"><div class="itab-header" onclick="toggleSection(' + i + ')"><div class="itab-title"><span class="itab-number">' + (i+1) + '</span><div><div class="itab-name">' + lc.title + '</div><div class="itab-preview" id="' + sid + '-preview">' + lc.preview + '</div></div></div><button class="i-button" id="' + sid + '-btn">i</button></div><div class="itab-content" id="' + sid + '-content"><div id="leadForm"><p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:16px">' + lc.subheading + '</p><div class="summary-box"><div class="summary-label">Your specs</div><div class="summary-content" id="quoteSummary">Select your options above first</div></div>' + fields + '<button class="submit-btn" id="submitBtn" onclick="submitLead()">' + lc.submitText + '</button><div style="text-align:center;margin-top:12px;font-size:0.75rem;color:var(--text-muted)">' + lc.submitNote + '</div></div><div class="success-message" id="successMsg" style="display:none"><div class="check-icon">&#x2705;</div><h3>' + lc.successMessage + '</h3><p>' + lc.successSubtext + '</p></div></div></div>';
+}
+
+function renderInput(step) {
+  if (step.input.type === 'select') {
+    var cols = step.input.columns || 1;
+    var html = '<div class="option-grid' + (cols > 1 ? ' cols-' + cols : '') + '">';
+    var idx = C.steps.indexOf(step);
+    step.input.options.forEach(function(opt) {
+      var sel = state.answers[step.id] === opt.value ? ' selected' : '';
+      var tags = (opt.tags||[]).map(function(t){return '<span class="option-tag'+(t.highlight?' highlight':'')+'">'+ t.text+'</span>';}).join('');
+      html += '<div class="option-card'+sel+'" onclick="selectOption(\''+step.id+'\',\''+opt.value+'\','+idx+','+(step.input.autoAdvance||false)+')"><div class="option-top"><span class="option-name">'+opt.icon+' '+opt.label+'</span>'+(opt.priceHint?'<span class="option-price">'+opt.priceHint+'</span>':'')+'</div>'+(opt.description?'<div class="option-desc">'+opt.description+'</div>':'')+(tags?'<div class="option-tags">'+tags+'</div>':'')+'<span class="option-check">&#x2713; Selected</span></div>';
+    });
+    return html + '</div>';
+  }
+  if (step.input.type === 'toggle_group') {
+    var idx2 = C.steps.indexOf(step);
+    return step.input.toggles.map(function(t){
+      var on = state.toggles[t.id] ? ' on' : '';
+      return '<div class="toggle-row"><div class="toggle-info"><div class="toggle-name">'+t.icon+' '+t.label+'</div><div class="toggle-cost">'+t.costHint+'</div></div><div class="toggle-switch'+on+'" id="toggle-'+t.id+'" onclick="toggleExtra(\''+t.id+'\',\''+step.id+'\','+idx2+')"><div class="toggle-knob"></div></div></div>';
+    }).join('');
+  }
+  return '';
+}
+
+function renderHint(hint) {
+  if (hint.type === 'comparison_table') {
+    var html = '<table class="compare-table"><thead><tr>'+hint.columns.map(function(c){return '<th>'+c+'</th>';}).join('')+'</tr></thead><tbody>';
+    hint.rows.forEach(function(row){ html+='<tr>'+row.map(function(cell){var cls=hint.cellStyles&&hint.cellStyles[cell]?' class="'+hint.cellStyles[cell]+'"':'';return '<td'+cls+'>'+cell+'</td>';}).join('')+'</tr>'; });
+    return html+'</tbody></table>';
+  }
+  if (hint.type === 'tips') return hint.tips.map(function(t){return '<div class="tip-card"><div class="tip-title">'+t.icon+' '+t.title+'</div><p>'+t.text+'</p></div>';}).join('');
+  return '';
+}
+
+function toggleSection(i) {
+  var sid = 'section-' + i;
+  var content = document.getElementById(sid + '-content');
+  var btn = document.getElementById(sid + '-btn');
+  var isOpen = content.classList.contains('show');
+  document.querySelectorAll('.itab-content').forEach(function(c){c.classList.remove('show');});
+  document.querySelectorAll('.i-button').forEach(function(b){b.classList.remove('active');});
+  if (!isOpen) {
+    content.classList.add('show'); btn.classList.add('active'); state.openSection = sid;
+    state.completedSections.add(sid); updateProgress();
+    setTimeout(function(){ document.getElementById(sid).scrollIntoView({behavior:'smooth',block:'start'}); }, 100);
+  } else { state.openSection = null; }
+}
+
+function showTab(btn, panelId) {
+  var container = btn.closest('.itab-content');
+  container.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active');});
+  container.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('show');});
+  btn.classList.add('active'); document.getElementById(panelId).classList.add('show');
+}
+
+function selectOption(stepId, value, idx, autoAdvance) {
+  state.answers[stepId] = value;
+  var sid = 'section-' + idx;
+  var step = C.steps[idx];
+  document.querySelectorAll('#' + sid + '-input .option-card').forEach(function(card, i){ card.classList.toggle('selected', step.input.options[i] && step.input.options[i].value === value); });
+  document.getElementById(sid).classList.add('completed'); state.completedSections.add(sid);
+  var opt = step.input.options.find(function(o){return o.value===value;});
+  document.getElementById(sid+'-preview').innerHTML='<span class="selected">&#x2713; '+(opt?opt.label:value)+'</span>';
+  updateEstimate(); updateQuoteSummary(); updateProgress();
+  if (autoAdvance) setTimeout(function(){ toggleSection(idx+1); }, 400);
+}
+
+function toggleExtra(toggleId, stepId, idx) {
+  state.toggles[toggleId] = !state.toggles[toggleId];
+  document.getElementById('toggle-'+toggleId).classList.toggle('on');
+  var sid = 'section-'+idx;
+  var step = C.steps[idx];
+  var active = step.input.toggles.filter(function(t){return state.toggles[t.id];});
+  if (active.length) {
+    document.getElementById(sid+'-preview').innerHTML='<span class="selected">&#x2713; '+active.length+' extra'+(active.length>1?'s':'')+' added</span>';
+    document.getElementById(sid).classList.add('completed'); state.completedSections.add(sid);
+  } else {
+    document.getElementById(sid+'-preview').textContent=step.preview;
+    document.getElementById(sid).classList.remove('completed'); state.completedSections.delete(sid);
+  }
+  updateEstimate(); updateQuoteSummary(); updateProgress();
+}
+
+function calculateEstimate() {
+  var p = C.pricing;
+  var primary = state.answers[p.basePriceStep];
+  if (!primary || !p.basePrices[primary]) return null;
+  var base = p.basePrices[primary];
+  var low = base.low, high = base.high;
+  if (p.multipliers) p.multipliers.forEach(function(m){
+    if (m.type==='select_map'){var a=state.answers[m.source];if(a&&m.values[a]!==undefined){low*=m.values[a];high*=m.values[a];}}
+  });
+  low=Math.round(low); high=Math.round(high);
+  var breakdown = [];
+  var ps = C.steps.find(function(s){return s.id===p.basePriceStep;});
+  var po = ps?ps.input.options.find(function(o){return o.value===primary;}):null;
+  breakdown.push({label:(po?po.label:primary),low:Math.round(base.low*(state.answers['home_size']?C.pricing.multipliers[0].values[state.answers['home_size']]:1)*(state.answers['surface_condition']?C.pricing.multipliers[1].values[state.answers['surface_condition']]:1)*(state.answers['paint_quality']?C.pricing.multipliers[2].values[state.answers['paint_quality']]:1)),high:Math.round(base.high*(state.answers['home_size']?C.pricing.multipliers[0].values[state.answers['home_size']]:1)*(state.answers['surface_condition']?C.pricing.multipliers[1].values[state.answers['surface_condition']]:1)*(state.answers['paint_quality']?C.pricing.multipliers[2].values[state.answers['paint_quality']]:1))});
+  if (p.extras) p.extras.forEach(function(extra){
+    if(!state.toggles[extra.id]) return;
+    low+=extra.low; high+=extra.high; breakdown.push({label:extra.breakdownLabel,low:extra.low,high:extra.high});
+  });
+  if (p.minimumPrice){low=Math.max(low,p.minimumPrice);high=Math.max(high,p.minimumPrice);}
+  if (p.roundTo){low=Math.round(low/p.roundTo)*p.roundTo;high=Math.round(high/p.roundTo)*p.roundTo;}
+  return {low:low,high:high,breakdown:breakdown};
+}
+
+function updateEstimate() {
+  var est = calculateEstimate();
+  var rangeEl=document.getElementById('estRange'), noteEl=document.getElementById('estNote'), breakdownEl=document.getElementById('estBreakdown');
+  var previewEl=document.getElementById('section-'+C.steps.length+'-preview'), specBtn=document.getElementById('specBtn');
+  if(!rangeEl) return;
+  if(!est){rangeEl.textContent='-';noteEl.textContent='Complete the sections above to see your estimate';breakdownEl.innerHTML='';if(previewEl)previewEl.textContent=C.estimate.preview;if(specBtn)specBtn.classList.remove('visible');return;}
+  var rt='$'+est.low.toLocaleString('en-AU')+' - $'+est.high.toLocaleString('en-AU');
+  rangeEl.textContent=rt; noteEl.textContent=C.estimate.note;
+  if(C.pricing.showBreakdown&&est.breakdown) breakdownEl.innerHTML=est.breakdown.map(function(b){return '<div class="breakdown-row"><span class="br-label">'+b.label+'</span><span class="br-value">$'+b.low.toLocaleString('en-AU')+' - $'+b.high.toLocaleString('en-AU')+'</span></div>';}).join('');
+  if(previewEl) previewEl.innerHTML='<span class="selected">&#x2713; '+rt+'</span>';
+  if(specBtn) specBtn.classList.add('visible');
+}
+
+function updateQuoteSummary() {
+  var el=document.getElementById('quoteSummary'); if(!el) return;
+  var lines=[];
+  C.steps.forEach(function(step){
+    if(step.input.type==='select'&&state.answers[step.id]){var opt=step.input.options.find(function(o){return o.value===state.answers[step.id];});lines.push(step.title+': '+(opt?opt.label:state.answers[step.id]));}
+    if(step.input.type==='toggle_group'){var active=step.input.toggles.filter(function(t){return state.toggles[t.id];});if(active.length)lines.push('Extras: '+active.map(function(t){return t.label;}).join(', '));}
+  });
+  el.innerHTML=lines.length?lines.join('<br>'):'Select your options above first';
+}
+
+function updateProgress() {
+  var total=C.steps.length+2, done=state.completedSections.size, pct=(done/total)*100;
+  var fill=document.getElementById('progressFill'), text=document.getElementById('progressText');
+  if(fill)fill.style.width=pct+'%'; if(text)text.textContent=done+' of '+total;
+}
+
+function buildSpecText() {
+  var lines=['QUOTE REQUEST — PAINTING','','Trade: House Painting','Location: Perth, WA',''];
+  C.steps.forEach(function(step){
+    if(step.input.type==='select'&&state.answers[step.id]){var opt=step.input.options.find(function(o){return o.value===state.answers[step.id];});lines.push(step.title+': '+(opt?opt.label:state.answers[step.id]));}
+    if(step.input.type==='toggle_group'){var active=step.input.toggles.filter(function(t){return state.toggles[t.id];});if(active.length)lines.push('Extras: '+active.map(function(t){return t.label;}).join(', '));}
+  });
+  lines.push(''); lines.push('Created with iTabs (itabs.ai)');
+  return lines.join('\n');
+}
+
+function openSpec() {
+  var text=buildSpecText();
+  document.getElementById('specContent').textContent=text;
+  document.getElementById('specWA').href='https://wa.me/?text='+encodeURIComponent(text);
+  document.getElementById('specOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeSpec() {
+  document.getElementById('specOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function copySpec(btn) {
+  var text=document.getElementById('specContent').textContent;
+  if(navigator.clipboard){navigator.clipboard.writeText(text).then(function(){btn.textContent='Copied!';setTimeout(function(){btn.textContent='Copy to clipboard';},2000);});}
+  else{var ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);btn.textContent='Copied!';setTimeout(function(){btn.textContent='Copy to clipboard';},2000);}
+}
+
+async function submitLead() {
+  var lc=C.leadCapture, formData={}, missing=false;
+  lc.fields.forEach(function(f){var el=document.getElementById('form-'+f.id);var val=el?el.value.trim():'';formData[f.id]=val;if(f.required&&!val)missing=true;});
+  if(missing){alert('Please fill in the required fields');return;}
+  var btn=document.getElementById('submitBtn');btn.textContent='Sending...';btn.disabled=true;
+  var summary='';
+  C.steps.forEach(function(step){
+    if(step.input.type==='select'&&state.answers[step.id]){var opt=step.input.options.find(function(o){return o.value===state.answers[step.id];});summary+=(step.title+': '+(opt?opt.label:state.answers[step.id])+'\n');}
+    if(step.input.type==='toggle_group'){var active=step.input.toggles.filter(function(t){return state.toggles[t.id];});if(active.length)summary+=('Extras: '+active.map(function(t){return t.label;}).join(', ')+'\n');}
+  });
+  try{var payload=Object.assign({access_key:lc.delivery.web3formsKey,subject:lc.delivery.emailSubject,from_name:C.business.name,message:'NEW ENQUIRY\n\n'+Object.entries(formData).map(function(e){return e[0]+': '+e[1];}).join('\n')+'\n\nSELECTIONS\n'+summary},formData);await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});}catch(e){console.error(e);}
+  document.getElementById('leadForm').style.display='none';
+  document.getElementById('successMsg').style.display='block';
+  var sid='section-'+(C.steps.length+1);
+  document.getElementById(sid).classList.add('completed');state.completedSections.add(sid);
+  document.getElementById(sid+'-preview').innerHTML='<span class="selected">&#x2713; Sent!</span>';
+  updateProgress();
+}
+
+init();
+</script>
+</body>
+</html>
